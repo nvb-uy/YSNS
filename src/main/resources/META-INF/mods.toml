@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion="[37,)"
+license="AGNYA License"
+showAsResourcePack=false
+
+[[mods]]
+modId="ysns"
+version="${version}"
+displayName="You Shall Not Spawn"
+authors="ElocinDev"
+description="Overhauls player animations."
+logoFile="logo.png"
+
+[[dependencies.ysns]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.19,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ysns]]
+modId="necronomicon"
+mandatory=true
+versionRange="*"
+ordering="NONE"
+side="BOTH"

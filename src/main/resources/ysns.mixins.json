@@ -1,0 +1,8 @@
+{
+  "package": "elocindev.ysns.mixin",
+  "refmap": "ysns.refmap.json",
+  "minVersion": "0.7",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ]
+}

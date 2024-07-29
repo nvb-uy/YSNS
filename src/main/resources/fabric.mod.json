@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "name": "${name}",
+  "version": "${version}",
+  "description": "Allows to disable entities globally, per-dimension or adjust their spawn chance.",
+  "authors": [
+    "ElocinDev"
+  ],
+  "contact": {
+    "sources": "https://github.com/nvb-uy/ysns",
+    "issues": "https://github.com/nvb-uy/ysns/issues"
+  },
+  "entrypoints": {
+    "main": [
+      "elocindev.ysns.YSNS"
+    ]
+  },
+  "mixins": [
+    "${id}.mixins.json"
+  ],
+  "custom": {
+  },
+  "icon": "logo.png",
+  "license": "AGNYA License",
+  "environment": "client",
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": "${mcVersionStr}",
+    "java": ">=${java}",
+    "necronomicon": ">=1.4.2"
+  },
+  "recommends": {
+  }
+}
