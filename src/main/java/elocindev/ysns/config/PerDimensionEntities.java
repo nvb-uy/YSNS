@@ -10,7 +10,7 @@ import elocindev.ysns.api.DimensionSpawnHolder;
 
 public class PerDimensionEntities {
     public static final String FOLDER = "ysns";
-    public static final String FILE_NAME = "per_dimension_disabled_entities.json5";
+    public static final String FILE_NAME = "per_dimension_entities.json5";
     public static final int CURRENT_CONFIG_VERSION = 1;
 
     @NecConfig
@@ -36,7 +36,7 @@ public class PerDimensionEntities {
 
     @Comment("----------------------------------------------------------------------------------------------------------------")
     @Comment("                                    You Shall Not Spawn by ElocinDev.")
-    @Comment("                                  per_dimension_disabled_entities.json5")
+    @Comment("                                      per_dimension_entities.json5")
     @Comment("----------------------------------------------------------------------------------------------------------------")
     @Comment(" ")
     @Comment(" entity: The entity's id you want to adjust. (For example: minecraft:zombie, regex can be used.)")

@@ -5,7 +5,6 @@ import com.matthewprenger.cursegradle.Options
 import gg.essential.gradle.util.noServerRunConfigs
 
 plugins {
-    alias(libs.plugins.kotlin)
     id(egt.plugins.multiversion.get().pluginId)
     id(egt.plugins.defaults.get().pluginId)
     alias(libs.plugins.shadow)
@@ -21,10 +20,6 @@ val mod_id: String by project
 
 val necronomicon_version: String by project
 val fabric_api_version: String by project
-val playeranimator_version_12001: String by project
-val playeranimator_version_11902: String by project
-
-val spellengine_version: String by project
 
 preprocess {
     vars.put("MODERN", if (project.platform.mcMinor >= 16) 1 else 0)
@@ -53,8 +48,14 @@ loom {
         mixinConfig("${mod_id}.mixins.json")
     }
 
-    if (project.platform.isFabric) {
+    if (project.platform.isNeoForge) neoForge {
+        mixin.useLegacyMixinAp.set(true)
+    }
 
+    if (project.platform.isFabric) {
+        mixin {
+			useLegacyMixinAp = true
+		}
     }
 
     mixin.defaultRefmapName.set("${mod_id}.refmap.json")
@@ -72,6 +73,7 @@ repositories {
 
     maven("https://maven.fabricmc.net")
     maven("https://maven.minecraftforge.net")
+    maven("https://maven.neoforged.net/")
 
     mavenCentral()
 }
@@ -83,7 +85,6 @@ val shade: Configuration by configurations.creating {
 dependencies {
     if (project.platform.isFabric) {
         modImplementation("maven.modrinth:necronomicon:${necronomicon_version}-fabric")
-        
           
         if (project.platform.mcMinor == 20) {
             modImplementation("net.fabricmc.fabric-api:fabric-api:0.92.2+1.20.1") 
@@ -100,12 +101,17 @@ dependencies {
 tasks.processResources {
     inputs.property("id", mod_id)
     inputs.property("name", mod_name)
-    val java = if (project.platform.mcMinor >= 18) {
-        17
+    val java = if (project.platform.mcMinor >= 21) {
+        21
     } else {
+        if (project.platform.mcMinor >= 18 && project.platform.mcMinor <= 20) {
+            17
+        }
         if (project.platform.mcMinor == 17) 16 else 8
     }
+    
     val compatLevel = "JAVA_${java}"
+
     inputs.property("java", java)
     inputs.property("java_level", compatLevel)
     inputs.property("version", mod_version)
@@ -127,9 +133,14 @@ tasks.processResources {
 tasks {
     withType<Jar> {
         if (project.platform.isFabric) {
-            exclude("mcmod.info", "mods.toml", "pack.mcmeta")
+            exclude("mcmod.info", "mods.toml", "neoforge.mods.toml", "pack.mcmeta")
         } else {
             exclude("fabric.mod.json")
+
+            if (!project.platform.isNeoForge) {
+                exclude("neoforge.mods.toml")
+            }
+
             if (project.platform.isLegacyForge) {
                 exclude("mods.toml")
             } else {
@@ -191,6 +202,8 @@ tasks {
         } else if (platform.isForge) {
             loaders.add("forge")
             if (platform.mcMinor >= 20) loaders.add("neoforge")
+        } else if (platform.isNeoForge) {
+            loaders.add("neoforge")
         }
         changelog.set(file("../../changelog.md").readText())
         dependencies {
@@ -214,6 +227,8 @@ tasks {
             } else if (platform.isForge) {
                 addGameVersion("Forge")
                 if (platform.mcMinor >= 20) addGameVersion("NeoForge")
+            } else if (platform.isNeoForge) {
+                addGameVersion("NeoForge")
             }
             if (platform.isFabric) {
                 releaseType = "release"
@@ -259,6 +274,7 @@ fun getInternalMcVersionStr(): String {
 
 fun getMcVersionList(): List<String> {
     return when (project.platform.mcVersionStr) {
+        "1.21" -> listOf("1.21")
         "1.20.1" -> listOf("1.20", "1.20.1")
         "1.19.2" -> listOf("1.19.2")
         else -> error("Unknown version")
