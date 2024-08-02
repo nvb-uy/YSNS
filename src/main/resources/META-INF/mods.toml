@@ -8,7 +8,7 @@ modId="ysns"
 version="${version}"
 displayName="You Shall Not Spawn"
 authors="ElocinDev"
-description="Allows to remove or adjust entity spawns."
+description="Allows to disable entities globally, per-dimension or adjust their spawn chance."
 logoFile="logo.png"
 
 [[dependencies.ysns]]
