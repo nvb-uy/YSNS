@@ -191,7 +191,7 @@ tasks {
 
     project.modrinth {
         token.set(System.getenv("MR_TOKEN"))
-        projectId.set("jCikwMS7")
+        projectId.set("EjXcpmEA")
         versionNumber.set(mod_version)
         versionName.set("You Shall Not Spawn $mod_version")
         uploadFile.set(remapJar.get().archiveFile as Any)
@@ -214,7 +214,7 @@ tasks {
     project.curseforge {
         project(closureOf<CurseProject> {
             apiKey = System.getenv("CF_TOKEN")
-            id = "1028436"
+            id = "628744"
             changelog = file("../../changelog.md")
             changelogType = "markdown"
             relations(closureOf<CurseRelation> {

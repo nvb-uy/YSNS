@@ -41,8 +41,8 @@ jobs:
 
       - name: Build
         env:
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-          CURSEFORGE_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          MR_TOKEN: ${{ secrets.MR_TOKEN }}
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
         run: ./gradlew publish --no-daemon
 
       - name: Upload Build Artifacts
