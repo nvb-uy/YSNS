@@ -4,5 +4,6 @@
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ServerWorldMixin"
   ]
 }
