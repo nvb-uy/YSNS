@@ -1,4 +1,5 @@
 ## 2.0.1
+- Added fallback calls to prevent possible cases where entities would still spawn
 - Fixed crash on servers
 
 # 2.0.0
