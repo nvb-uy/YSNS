@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import elocindev.necronomicon.api.config.v1.NecConfigAPI;
 import elocindev.ysns.config.DisabledEntities;
 import elocindev.ysns.config.PerDimensionEntities;
+import elocindev.ysns.event.SpawnEventHandler;
 
 //#if FABRIC==1
 
@@ -23,7 +24,7 @@ public class YSNS
 //$$ {
 //#endif
 
-    public static String MODID = "ysns";
+    public static final String MODID = "ysns";
     public static final Logger LOGGER = LoggerFactory.getLogger("ysns");
 
     //#if FABRIC==1
@@ -37,5 +38,9 @@ public class YSNS
         NecConfigAPI.registerConfig(PerDimensionEntities.class);
 
         LOGGER.info("You Shall Not Spawn's Config initialized");
+
+        //#if FABRIC==1
+        SpawnEventHandler.register();
+        //#endif
     }
 }
