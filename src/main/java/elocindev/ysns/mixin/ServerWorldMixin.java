@@ -11,8 +11,8 @@ import net.minecraft.world.entity.Entity;
 
 @Mixin(ServerLevel.class)
 public class ServerWorldMixin {
-    @Inject(method = "addEntity", at = @At("HEAD"))
-    private void ysns$addEntity(Entity entity, CallbackInfoReturnable<Boolean> ci) {
+    @Inject(method = "addEntity", at = @At("HEAD"), cancellable = true)
+    private void ysns$removeDisabledEntitiesOnSpawn(Entity entity, CallbackInfoReturnable<Boolean> ci) {
         if (YSNSAPI.isEntityDisabled(entity, entity.level())) {
             entity.discard();
             ci.setReturnValue(false);
