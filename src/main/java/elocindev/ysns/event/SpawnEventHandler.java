@@ -29,7 +29,7 @@ public class SpawnEventHandler {
     //$$ @SubscribeEvent
     //$$ public static void fallbackSpawnEvent(EntityJoinLevelEvent event) {
     //$$    if (event.getLevel().isClientSide()) return;
-    //$$    if (event.getEntity() instanceof LivingEntity && YSNSAPI.isEntityDisabled(event.getEntity(), (Level) event.getLevel())) {
+    //$$    if (event.getEntity() instanceof LivingEntity && YSNSAPI.isEntityDisabled(event.getEntity(), event.getEntity().getLevel())) {
     //$$        event.setCanceled(true);
     //$$    }
     //$$}
@@ -38,7 +38,7 @@ public class SpawnEventHandler {
     //$$ @SubscribeEvent
     //$$ public static void fallbackFinalizeSpawnEvent(MobSpawnEvent.FinalizeSpawn event) {
     //$$    if (event.getLevel().isClientSide()) return;
-    //$$    if (event.getEntity() instanceof LivingEntity && YSNSAPI.isEntityDisabled(event.getEntity(), (Level) event.getLevel())) {
+    //$$    if (event.getEntity() instanceof LivingEntity && YSNSAPI.isEntityDisabled(event.getEntity(), event.getEntity().level())) {
     //$$        event.setSpawnCancelled(true);
     //$$    }
     //$$}
