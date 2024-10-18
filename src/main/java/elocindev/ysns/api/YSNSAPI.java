@@ -20,7 +20,7 @@ public class YSNSAPI {
         }
 
         for (DimensionSpawnHolder holder : PerDimensionEntities.INSTANCE.dimensions) {
-            if (holder.getEntityIdentifier().toString().equals(entity_id) && parseEntry(holder.getDimension(), dimension_id)) {
+            if (parseEntry(holder.getEntityIdentifier(), entity_id) && parseEntry(holder.getDimension(), dimension_id)) {
                 return world.getRandom().nextFloat() > holder.getSpawnChance();
             }
         }

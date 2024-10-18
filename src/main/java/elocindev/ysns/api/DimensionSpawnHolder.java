@@ -1,7 +1,5 @@
 package elocindev.ysns.api;
 
-import net.minecraft.resources.ResourceLocation;
-
 public class DimensionSpawnHolder {
     private String entityId;
     private String dimension;
@@ -13,8 +11,8 @@ public class DimensionSpawnHolder {
         this.spawn_chance = spawn_chance;
     }
 
-    public ResourceLocation getEntityIdentifier() {
-        return ResourceLocation.tryParse(entityId);
+    public String getEntityIdentifier() {
+        return entityId;
     }
 
     public String getDimension() {

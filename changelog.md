@@ -1,3 +1,6 @@
+## 2.0.2
+- Fixed crash when using regex on per-dimension bans
+
 ## 2.0.1
 - Added fallback calls to prevent possible cases where entities would still spawn
 - Fixed crash on servers

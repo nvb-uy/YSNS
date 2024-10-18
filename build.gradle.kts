@@ -247,7 +247,6 @@ tasks {
     }
 
     register("publish") {
-        dependsOn(modrinth)
         dependsOn(curseforge)
     }
 }
